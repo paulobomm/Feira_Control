@@ -64,9 +64,9 @@ Aguarde ~10 segundos. Serviços disponíveis:
 | Serviço | URL |
 |---------|-----|
 | RabbitMQ Management | http://localhost:15672 (usuário: `feira` / senha: `feira123`) |
-| PostgreSQL Auth | `localhost:5432` — `auth_db` |
-| PostgreSQL Admin | `localhost:5433` — `admin_db` |
-| PostgreSQL Feirante | `localhost:5434` — `feirante_db` |
+| PostgreSQL Auth | `localhost:5435` — `auth_db` |
+| PostgreSQL Admin | `localhost:5436` — `admin_db` |
+| PostgreSQL Feirante | `localhost:5437` — `feirante_db` |
 
 Para parar:
 
@@ -83,15 +83,15 @@ Execute em cada serviço para aplicar o schema Drizzle no banco:
 ```bash
 # auth_db
 cd apps/auth-service
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/auth_db npx drizzle-kit push:pg
+DATABASE_URL=postgresql://postgres:postgres@localhost:5435/auth_db npx drizzle-kit push:pg
 
 # admin_db
 cd apps/admin-service
-DATABASE_URL=postgresql://postgres:postgres@localhost:5433/admin_db npx drizzle-kit push:pg
+DATABASE_URL=postgresql://postgres:postgres@localhost:5436/admin_db npx drizzle-kit push:pg
 
 # feirante_db
 cd apps/feirante-service
-DATABASE_URL=postgresql://postgres:postgres@localhost:5434/feirante_db npx drizzle-kit push:pg
+DATABASE_URL=postgresql://postgres:postgres@localhost:5437/feirante_db npx drizzle-kit push:pg
 ```
 
 ---
@@ -102,18 +102,18 @@ Abra 3 terminais a partir da raiz do projeto (substitua `minha_chave_secreta` pe
 
 ```bash
 # Terminal 1 — Auth Service
-PORT=3000 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/auth_db \
+PORT=3000 DATABASE_URL=postgresql://postgres:postgres@localhost:5435/auth_db \
   JWT_SECRET=minha_chave_secreta \
   npm run dev:auth
 
 # Terminal 2 — Admin Service
-PORT=3001 DATABASE_URL=postgresql://postgres:postgres@localhost:5433/admin_db \
+PORT=3001 DATABASE_URL=postgresql://postgres:postgres@localhost:5436/admin_db \
   JWT_SECRET=minha_chave_secreta \
   RABBITMQ_URL=amqp://feira:feira123@localhost:5672 \
   npm run dev:admin
 
 # Terminal 3 — Feirante Service
-PORT=3002 DATABASE_URL=postgresql://postgres:postgres@localhost:5434/feirante_db \
+PORT=3002 DATABASE_URL=postgresql://postgres:postgres@localhost:5437/feirante_db \
   JWT_SECRET=minha_chave_secreta \
   RABBITMQ_URL=amqp://feira:feira123@localhost:5672 \
   npm run dev:feirante

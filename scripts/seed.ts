@@ -5,17 +5,17 @@ const configs = {
   auth: {
     connectionString:
       process.env.AUTH_DATABASE_URL ??
-      'postgresql://postgres:postgres@localhost:5432/auth_db',
+      'postgresql://postgres:postgres@localhost:5435/auth_db',
   },
   admin: {
     connectionString:
       process.env.ADMIN_DATABASE_URL ??
-      'postgresql://postgres:postgres@localhost:5433/admin_db',
+      'postgresql://postgres:postgres@localhost:5436/admin_db',
   },
   feirante: {
     connectionString:
       process.env.FEIRANTE_DATABASE_URL ??
-      'postgresql://postgres:postgres@localhost:5434/feirante_db',
+      'postgresql://postgres:postgres@localhost:5437/feirante_db',
   },
 };
 
