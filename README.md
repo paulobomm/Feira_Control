@@ -121,6 +121,28 @@ PORT=3002 DATABASE_URL=postgresql://postgres:postgres@localhost:5434/feirante_db
 
 ---
 
+## Seed — Dados iniciais
+
+Popula os 3 bancos com usuários, feirantes, barracas, produtos e estoque de teste:
+
+```bash
+npm run seed
+```
+
+Credenciais criadas:
+
+| Usuário | Email | Senha | Role |
+|---------|-------|-------|------|
+| Administrador | admin@feira.com | admin123 | admin |
+| João Silva | joao@feira.com | feirante123 | feirante |
+| Maria Santos | maria@feira.com | feirante123 | feirante |
+
+Produtos criados (50 unidades em estoque cada):
+- **João**: Banana Prata (R$ 8,00), Mamão Formosa (R$ 12,00), Abacaxi (R$ 6,50)
+- **Maria**: Tomate (R$ 7,00), Alface (R$ 3,50), Cebola (R$ 9,00)
+
+---
+
 ## Testando com cURL
 
 ### 1. Login

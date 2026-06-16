@@ -15,7 +15,8 @@
     "dev:feirante": "npm run dev --workspace=apps/feirante-service",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f"
+    "docker:logs": "docker compose logs -f",
+    "seed": "ts-node -r tsconfig-paths/register scripts/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
