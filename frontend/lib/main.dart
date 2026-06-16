@@ -30,7 +30,7 @@ class FeiraControlApp extends StatelessWidget {
             brightness: Brightness.light,
           ),
           useMaterial3: true,
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             elevation: 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
