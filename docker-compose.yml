@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres-auth:
+    image: postgres:16-alpine
+    container_name: feira_auth_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: auth_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+
+  postgres-admin:
+    image: postgres:16-alpine
+    container_name: feira_admin_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: admin_db
+    ports:
+      - '5433:5432'
+    volumes:
+      - admin_db_data:/var/lib/postgresql/data
+
+  postgres-feirante:
+    image: postgres:16-alpine
+    container_name: feira_feirante_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: feirante_db
+    ports:
+      - '5434:5432'
+    volumes:
+      - feirante_db_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: feira_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: feira
+      RABBITMQ_DEFAULT_PASS: feira123
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  auth_db_data:
+  admin_db_data:
+  feirante_db_data:
+  rabbitmq_data:
