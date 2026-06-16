@@ -42,8 +42,8 @@ services:
       RABBITMQ_DEFAULT_USER: feira
       RABBITMQ_DEFAULT_PASS: feira123
     ports:
-      - '5672:5672'
-      - '15672:15672'
+      - '5673:5672'
+      - '15673:15672'
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
