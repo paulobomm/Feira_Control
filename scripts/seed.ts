@@ -29,14 +29,17 @@ async function seedAuth() {
     const adminHash = await bcrypt.hash('admin123', 10);
     const feiranteHash = await bcrypt.hash('feirante123', 10);
 
+    const joaoId = '00000000-0000-0000-0000-000000000001';
+    const mariaId = '00000000-0000-0000-0000-000000000002';
+
     await client.query(`
-      INSERT INTO usuarios (nome, email, senha_hash, role)
+      INSERT INTO usuarios (id, nome, email, senha_hash, role)
       VALUES
-        ('Administrador', 'admin@feira.com', $1, 'admin'),
-        ('João Silva',    'joao@feira.com',  $2, 'feirante'),
-        ('Maria Santos',  'maria@feira.com', $2, 'feirante')
+        (gen_random_uuid(), 'Administrador', 'admin@feira.com', $1, 'admin'),
+        ($3, 'João Silva',    'joao@feira.com',  $2, 'feirante'),
+        ($4, 'Maria Santos',  'maria@feira.com', $2, 'feirante')
       ON CONFLICT (email) DO NOTHING;
-    `, [adminHash, feiranteHash]);
+    `, [adminHash, feiranteHash, joaoId, mariaId]);
 
     console.log('   ✓ Usuários criados');
     console.log('     admin@feira.com   / admin123    (role: admin)');
