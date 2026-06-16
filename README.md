@@ -63,7 +63,7 @@ Aguarde ~10 segundos. Serviços disponíveis:
 
 | Serviço | URL |
 |---------|-----|
-| RabbitMQ Management | http://localhost:15673 (usuário: `guest` / senha: `guest`) |
+| RabbitMQ Management | http://localhost:15673 (usuário: `feira` / senha: `feira123`) |
 | PostgreSQL Auth | `localhost:5435` — `auth_db` |
 | PostgreSQL Admin | `localhost:5436` — `admin_db` |
 | PostgreSQL Feirante | `localhost:5437` — `feirante_db` |
@@ -109,13 +109,13 @@ PORT=3000 DATABASE_URL=postgresql://postgres:postgres@localhost:5435/auth_db \
 # Terminal 2 — Admin Service
 PORT=3001 DATABASE_URL=postgresql://postgres:postgres@localhost:5436/admin_db \
   JWT_SECRET=minha_chave_secreta \
-  RABBITMQ_URL=amqp://guest:guest@localhost:5673 \
+  RABBITMQ_URL=amqp://feira:feira123@localhost:5673 \
   npm run dev:admin
 
 # Terminal 3 — Feirante Service
 PORT=3002 DATABASE_URL=postgresql://postgres:postgres@localhost:5437/feirante_db \
   JWT_SECRET=minha_chave_secreta \
-  RABBITMQ_URL=amqp://guest:guest@localhost:5673 \
+  RABBITMQ_URL=amqp://feira:feira123@localhost:5673 \
   npm run dev:feirante
 ```
 

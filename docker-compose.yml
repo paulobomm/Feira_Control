@@ -38,6 +38,9 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management-alpine
     container_name: feira_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: feira
+      RABBITMQ_DEFAULT_PASS: feira123
     ports:
       - '5673:5672'
       - '15673:15672'
