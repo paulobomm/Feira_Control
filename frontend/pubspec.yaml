@@ -1,0 +1,41 @@
+name: feira_control
+description: Sistema de gerenciamento de barracas de feira
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP
+  dio: ^5.4.0
+
+  # Armazenamento seguro de tokens
+  flutter_secure_storage: ^9.0.0
+
+  # Gerenciamento de estado
+  provider: ^6.1.1
+
+  # Navegação
+  go_router: ^13.2.0
+
+  # Gráficos (relatório admin)
+  fl_chart: ^0.67.0
+
+  # Formatação de datas
+  intl: ^0.19.0
+
+  # Ícones Material extras
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
