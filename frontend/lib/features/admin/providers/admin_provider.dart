@@ -19,8 +19,8 @@ class AdminProvider extends ChangeNotifier {
       feirantes = (res.data as List)
           .map((e) => Feirante.fromJson(e as Map<String, dynamic>))
           .toList();
-    } catch (_) {
-      error = 'Erro ao carregar feirantes';
+    } catch (e) {
+      error = 'Erro ao carregar feirantes: $e';
     }
     loading = false;
     notifyListeners();
@@ -55,8 +55,8 @@ class AdminProvider extends ChangeNotifier {
       barracas = (res.data as List)
           .map((e) => Barraca.fromJson(e as Map<String, dynamic>))
           .toList();
-    } catch (_) {
-      error = 'Erro ao carregar barracas';
+    } catch (e) {
+      error = 'Erro ao carregar barracas: $e';
     }
     loading = false;
     notifyListeners();
@@ -93,8 +93,8 @@ class AdminProvider extends ChangeNotifier {
         queryParameters: {'dataInicio': dataInicio, 'dataFim': dataFim},
       );
       relatorio = Relatorio.fromJson(res.data as Map<String, dynamic>);
-    } catch (_) {
-      error = 'Erro ao carregar relatório';
+    } catch (e) {
+      error = 'Erro ao carregar relatório: $e';
     }
     loading = false;
     notifyListeners();
