@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'auth_storage.dart';
 import '../constants/api_constants.dart';
 
@@ -14,12 +15,18 @@ class HttpClient {
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         final token = await AuthStorage.getAccessToken();
+        debugPrint('[HTTP] ${options.method} ${options.path} token=${token != null ? "present" : "null"}');
         if (token != null) {
           options.headers['Authorization'] = 'Bearer $token';
         }
         handler.next(options);
       },
+      onResponse: (response, handler) {
+        debugPrint('[HTTP] ${response.statusCode} ${response.requestOptions.path}');
+        handler.next(response);
+      },
       onError: (error, handler) async {
+        debugPrint('[HTTP] ERROR ${error.response?.statusCode} ${error.requestOptions.path}: ${error.message}');
         if (error.response?.statusCode == 401) {
           final refreshToken = await AuthStorage.getRefreshToken();
           if (refreshToken != null) {
@@ -37,7 +44,8 @@ class HttpClient {
               error.requestOptions.headers['Authorization'] = 'Bearer $newToken';
               final retryRes = await dio.fetch(error.requestOptions);
               return handler.resolve(retryRes);
-            } catch (_) {
+            } catch (e) {
+              debugPrint('[HTTP] Refresh failed: $e');
               await AuthStorage.clear();
             }
           }
